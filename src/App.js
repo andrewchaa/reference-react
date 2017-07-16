@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import logo from './logo.svg';
 import './App.css';
 
 const Stars = (props) => {
+  
+  const numberOfStars = 1 + Math.floor(Math.random() * 9);
+  let stars = _.range(0, numberOfStars)
+    .map((number, i) => <i className="fa fa-star"></i>);
+  
+
   return (
     <div className="col-5">
-      <i className="fa fa-star"></i>
-      <i className="fa fa-star"></i>
-      <i className="fa fa-star"></i>
-      <i className="fa fa-star"></i>
+      {stars}
     </div>
 
   )
@@ -25,7 +29,8 @@ const Button = (props) => {
 const Answer = (props) => {
   return (
     <div className="col-5">
-      ...
+      <span>5</span>
+      <span>6</span>
     </div>
   )
 }
@@ -34,13 +39,16 @@ const Numbers = (props) => {
   return (
     <div className="card text-center">
       <div>
-        <span>1</span>
-        <span className="selected">2</span>
-        <span className="used">3</span>
+        {
+          Numbers.list.map((number, i) => 
+          <span key={i}>{number}</span>
+        )}
       </div>
     </div>
   )
 }
+
+Numbers.list = _.range(1, 10);
 
 class App extends Component {
   render() {
